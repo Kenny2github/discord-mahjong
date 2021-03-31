@@ -6,6 +6,7 @@ import discord
 from discord.ext import commands
 from i18n import i18n
 from emojis import number, add_ok
+from . import thegame
 
 ROOMS = 100
 
@@ -62,6 +63,8 @@ class Room:
                     embed=discord.Embed(
                         title=i18n(player, 'room-status'),
                         description=desc)))
+        if self.all_ready and None not in self.players.values():
+            asyncio.create_task(thegame.play(tuple(self.players.values())))
 
     async def send(self, wind: Wind, desc: str):
         self.messages[wind] = await self.players[wind].send(
