@@ -5,7 +5,7 @@ import emojis
 from args import cmdargs
 from wakeup import wakeup
 import config
-from loggers import setupClient
+from loggers import setup_client
 
 client = commands.Bot(cmdargs.prefix)
 client.should_stop = False
@@ -17,9 +17,9 @@ async def tiles(ctx: commands.Context, *, arg: str):
 @commands.is_owner()
 @client.command()
 async def stop(ctx: commands.Context):
-    await ctx.message.add_reaction('\N{OK HAND SIGN}')
+    await ctx.message.add_reaction(emojis.OK)
     client.should_stop = True
 
-setupClient(client)
+setup_client(client)
 client.loop.create_task(wakeup(client))
 client.run(config.token)

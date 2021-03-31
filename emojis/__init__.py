@@ -18,3 +18,5 @@ def tiles(paths):
     if not isinstance(paths, (list, tuple)):
         paths = str(paths).split('|')
     return ''.join(tile(path) for path in paths)
+
+OK = '\N{OK HAND SIGN}'

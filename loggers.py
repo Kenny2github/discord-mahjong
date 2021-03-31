@@ -25,8 +25,8 @@ handler.setFormatter(logging.Formatter(
 logging.basicConfig(handlers=[handler])
 LOGLEVEL = logging.DEBUG if cmdargs.v else logging.INFO
 
-stdLogger = logging.getLogger('mahjong.(std)')
-stdLogger.setLevel(LOGLEVEL)
+stdlogger = logging.getLogger('mahjong.(std)')
+stdlogger.setLevel(LOGLEVEL)
 
 def getLogger(name):
     logger = logging.getLogger(name)
@@ -34,8 +34,9 @@ def getLogger(name):
     return logger
 
 async def on_command_error(ctx, exc):
-    stdLogger.error('Ignoring exception in command %s: %s %s',
-                 ctx.command, type(exc).__name__, exc)
+    stdlogger.error(
+        'Ignoring exception in command %s: %s %s',
+        ctx.command, type(exc).__name__, exc)
     if hasattr(ctx.command, 'on_error'):
         return
     cog = ctx.cog
@@ -61,15 +62,15 @@ async def on_command_error(ctx, exc):
         discord.Forbidden
     )):
         return
-    stdLogger.error(''.join(traceback.format_exception(
+    stdlogger.error(''.join(traceback.format_exception(
         type(exc), exc, exc.__traceback__
     )))
 
 async def before_invoke(ctx):
-    stdLogger.info(
+    stdlogger.info(
         '%s\t(%s) running %s%s',
         ctx.author, ctx.author.id, ctx.prefix, ctx.command)
 
-def setupClient(client: commands.Bot):
+def setup_client(client: commands.Bot):
     client.event(on_command_error)
     client.before_invoke(before_invoke)
