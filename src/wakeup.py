@@ -14,7 +14,13 @@ def recurse_mtimes(mtimes: dict, root: str, *s: str):
 
 async def wakeup(client: Bot):
     mtimes = {}
+    extra_names = [
+        'i18n\\__init__.py',
+        'emojis\\__init__.py',
+    ]
     recurse_mtimes(mtimes, os.path.dirname(os.path.abspath(__file__)))
+    for name in extra_names:
+        mtimes[name] = os.path.getmtime(name)
     while 1:
         try:
             await asyncio.sleep(1)

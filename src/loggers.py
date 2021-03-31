@@ -8,7 +8,7 @@ import traceback
 import discord
 from discord.ext import commands
 # self
-from args import cmdargs
+from .args import cmdargs
 
 if cmdargs.stdout:
     handler = logging.StreamHandler()
@@ -51,7 +51,7 @@ async def on_command_error(ctx, exc):
         commands.CommandOnCooldown,
     )):
         return await ctx.send(embed=discord.Embed(
-            title=('error',),
+            title='Error',
             description=str(exc),
             color=0xff0000
         ))

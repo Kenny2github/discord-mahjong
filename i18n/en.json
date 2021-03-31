@@ -1,0 +1,13 @@
+{
+	"hello": "Hello, World!",
+	"error": "Error",
+	"invalid-lang": "Invalid language `{0}`. Valid languages are:\n`{1}`",
+	"current-lang": "Your current language is `{0}`",
+	"existing-langs": "Available languages: `{0}`\nRun `{1}lang <language code>` to set it",
+	"already-joined": "You have already joined a room! Check your DMs.",
+	"no-player": "{0} No player",
+	"room-player-True": "{0} {1}: Ready",
+	"room-player-False": "{0} {1}: Not ready",
+	"room-status": "Room",
+	"not-joined": "You are not in a room!"
+}

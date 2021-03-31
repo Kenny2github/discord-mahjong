@@ -3,3 +3,4 @@
 __pycache__/
 config.json
 logs/
+i18n/users.json
