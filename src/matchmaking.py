@@ -1,5 +1,5 @@
 from argparse import RawDescriptionHelpFormatter
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Optional, List
 import asyncio
 from mahjong import Wind
 import discord
@@ -29,7 +29,7 @@ class Room:
     def full(self) -> bool:
         return not any(p is None for p in self.players.values())
 
-    def __init__(self):
+    def __init__(self, bot: commands.Bot):
         self.players = {
             Wind.EAST: None,
             Wind.SOUTH: None,
@@ -43,6 +43,7 @@ class Room:
             Wind.NORTH: False,
         }
         self.messages = self.players.copy()
+        self.bot = bot
 
     def update(self):
         for wind, player in self.players.items():
@@ -64,7 +65,8 @@ class Room:
                         title=i18n(player, 'room-status'),
                         description=desc)))
         if self.all_ready and None not in self.players.values():
-            asyncio.create_task(thegame.play(tuple(self.players.values())))
+            asyncio.create_task(thegame.play(
+                tuple(self.players.values()), self.bot))
 
     async def send(self, wind: Wind, desc: str):
         self.messages[wind] = await self.players[wind].send(
@@ -105,7 +107,10 @@ class Room:
         return player in self.seats
 
 class Matchmaking(commands.Cog):
-    rooms = [Room() for _ in range(ROOMS)]
+    rooms: List[Room]
+
+    def __init__(self, bot: commands.Bot):
+        self.rooms = [Room(bot) for _ in range(ROOMS)]
 
     @commands.group(invoke_without_command=True)
     async def mahjong(self, ctx: commands.Context):

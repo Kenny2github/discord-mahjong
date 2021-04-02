@@ -35,7 +35,7 @@ def str_discard(hand: mahjong.game.Hand) -> str:
         lines.append(emojis.ZWNJ.join(tiles[i:i+EMOJI_LINE_LIMIT]))
     return '\n'.join(lines)
 
-async def play(players: Tuple[Person, ...]):
+async def play(players: Tuple[Person, ...], bot: discord.ext.commands.Bot):
     game = mahjong.Hand(None)
     prevailing = mahjong.Wind(random.randrange(4))
     question = game.play(prevailing)

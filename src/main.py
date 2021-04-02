@@ -23,7 +23,7 @@ async def tiles(ctx: commands.Context, *, arg: str):
 
 load_i18n()
 client.add_cog(I18n())
-client.add_cog(Matchmaking())
+client.add_cog(Matchmaking(client))
 
 @commands.is_owner()
 @client.command()
