@@ -9,5 +9,15 @@
 	"room-player-True": "{0} {1}: Ready",
 	"room-player-False": "{0} {1}: Not ready",
 	"room-status": "Room",
-	"not-joined": "You are not in a room!"
+	"not-joined": "You are not in a room!",
+	"q-discard-what": "Click/tap the letter reaction corresponding to the tile you wish to discard.",
+	"meld-type-Pong": "{0}: Pong (3 of the same tile)",
+	"meld-type-Chow": "{0}: Chow (3 consecutive tiles of the same suit)",
+	"meld-type-Kong": "{0}: Kong (4 of the same tile)",
+	"meld-type-Wu": "{0}: Wu (winning hand)",
+	"meld-type-None": "{0}: Don't meld (cancel)",
+	"q-meld-from-discard-q": "Click/tap the number reaction corresponding to the type of meld you want to make",
+	"q-which-meld": "Click/tap the number reaction corresponding to the specific meld you want to make.",
+	"q-rob-kong-q": "You can rob the last Kong to win with: {0}\nDo you want to?",
+	"q-self-draw-q": "You can win by self draw with: {0}\nDo you want to?"
 }
